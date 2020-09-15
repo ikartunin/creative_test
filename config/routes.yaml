@@ -4,3 +4,9 @@ main:
   controller: App\Controller\HomeController
   action: index
 
+details:
+  method: 'get'
+  path: details/{id}
+  controller: App\Controller\HomeController
+  action: details
+

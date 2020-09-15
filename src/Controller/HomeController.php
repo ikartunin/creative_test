@@ -77,6 +77,29 @@ class HomeController
     }
 
     /**
+     * @param ServerRequestInterface $request
+     * @param ResponseInterface      $response
+     * @param int                    $id
+     *
+     * @return ResponseInterface
+     *
+     * @throws HttpBadRequestException
+     */
+    public function details(ServerRequestInterface $request, ResponseInterface $response, $id): ResponseInterface
+    {
+        try {
+            $data = $this->twig->render('home/details.html.twig', [
+                'trailer' => $this->em->getRepository(Movie::class)->find($id),
+            ]);
+        } catch (\Exception $e) {
+            throw new HttpBadRequestException($request, $e->getMessage(), $e);
+        }
+        $response->getBody()->write($data);
+
+        return $response;
+    }
+
+    /**
      * @return Collection
      */
     protected function fetchData(): Collection
