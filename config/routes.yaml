@@ -10,3 +10,9 @@ details:
   controller: App\Controller\HomeController
   action: details
 
+favorite:
+  method: 'get'
+  path: favorite/{id}/{fav}
+  controller: App\Controller\HomeController
+  action: favorite
+

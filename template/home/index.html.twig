@@ -4,7 +4,6 @@
 
 {% block content %}
     <div class="container">
-
         <h1 class="mt-5 mb-4">{{ trailers | length }} iTunes Movie trailers</h1>
         <div class="junior row">
             <div class="col-md-3">
@@ -26,6 +25,7 @@
                     <td><img src="{{ trailer.image }}"></td>
                     <td><a href="/details/{{ trailer.id }}">{{ trailer.title }}</a></td>
                     <td><a href="{{ trailer.link }}" target="_blank">Trailer</a></td>
+                    <td><a class="favorite {{ trailer.favorite ? 'fav' : '' }}" href="/favorite" data-id="{{ trailer.id }}">Нравится</a></td>
                 </tr>
             {% endfor %}
         </table>

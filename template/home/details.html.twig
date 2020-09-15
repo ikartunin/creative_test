@@ -12,6 +12,7 @@
                     <td><img src="{{ trailer.image }}"></td>
                     <td><b>{{ trailer.title }}</b><br>{{ trailer.description }}</td>
                     <td><a href="{{ trailer.link }}" target="_blank">Trailer</a></td>
+                    <td><a class="favorite {{ trailer.favorite ? 'fav' : '' }}" href="/favorite" data-id="{{ trailer.id }}">Нравится</a></td>
                 </tr>
             </table>
         {% else %}

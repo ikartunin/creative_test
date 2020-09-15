@@ -100,6 +100,28 @@ class HomeController
     }
 
     /**
+     * @param ServerRequestInterface $request
+     * @param ResponseInterface      $response
+     * @param int                    $id
+     * @param boolean                $fav
+     *
+     * @return ResponseInterface
+     *
+     */
+    public function favorite(ServerRequestInterface $request, ResponseInterface $response, $data): ResponseInterface
+    {
+        $trailer = $this->em->getRepository(Movie::class)->find($data['id']);
+        if ($trailer) {
+            $trailer->setFavorite((boolean)$data['fav']);
+            $response->getBody()->write($trailer->getFavorite() ? '1' : '0');
+            $this->em->persist($trailer);
+            $this->em->flush();
+        } else {
+            $response->getBody()->write('0');
+        }
+        return $response;
+    }
+    /**
      * @return Collection
      */
     protected function fetchData(): Collection

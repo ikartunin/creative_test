@@ -55,6 +55,12 @@ final class Movie
     private $image;
 
     /**
+     * @var boolean
+     * @ORM\Column(type="boolean", options={"default":"0"})
+     */
+    private $favorite = false;
+
+    /**
      * @return string|null
      */
     public function getImage(): ?string
@@ -158,6 +164,26 @@ final class Movie
     public function setPubDate(?\DateTime $pubDate): self
     {
         $this->pubDate = $pubDate;
+
+        return $this;
+    }
+
+    /**
+     * @return \boolean
+     */
+    public function getFavorite()
+    {
+        return (boolean)$this->favorite;
+    }
+
+    /**
+     * @param \boolean $favorite
+     *
+     * @return Movie
+     */
+    public function setFavorite($favorite): self
+    {
+        $this->favorite = $favorite;
 
         return $this;
     }
