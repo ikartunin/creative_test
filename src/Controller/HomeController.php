@@ -87,10 +87,10 @@ class HomeController
      */
     public function details(ServerRequestInterface $request, ResponseInterface $response, $id): ResponseInterface
     {
+        $trailer = $this->em->getRepository(Movie::class)->find($id);
+        $error = $trailer ? null : 'Trailer not found';
         try {
-            $data = $this->twig->render('home/details.html.twig', [
-                'trailer' => $this->em->getRepository(Movie::class)->find($id),
-            ]);
+            $data = $this->twig->render('home/details.html.twig', compact('trailer', 'error'));
         } catch (\Exception $e) {
             throw new HttpBadRequestException($request, $e->getMessage(), $e);
         }
