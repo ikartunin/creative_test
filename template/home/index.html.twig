@@ -23,7 +23,9 @@
         <table class="table table-bordered">
             {% for trailer in trailers %}
                 <tr>
-                    <td>{{ trailer.title }}</td>
+                    <td><img src="{{ trailer.image }}"></td>
+                    <td><a href="/details/{{ trailer.id }}">{{ trailer.title }}</a></td>
+                    <td><a href="{{ trailer.link }}" target="_blank">Trailer</a></td>
                 </tr>
             {% endfor %}
         </table>
