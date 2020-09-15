@@ -59,13 +59,18 @@ class HomeController
     public function index(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {
         try {
-            $data = $this->twig->render('home/index.html.twig', [
+            $junior_vars = [
+                'datetime' => date('H:i:s d/m/Y'),
+                'namespace' => substr(__CLASS__, 0, strrpos(__CLASS__, '\\')),
+                'class' => substr(__CLASS__, strrpos(__CLASS__, '\\') + 1),
+                'method' => __FUNCTION__,
+            ];
+            $data = $this->twig->render('home/index.html.twig', array_merge([
                 'trailers' => $this->fetchData(),
-            ]);
+            ], $junior_vars));
         } catch (\Exception $e) {
             throw new HttpBadRequestException($request, $e->getMessage(), $e);
         }
-
         $response->getBody()->write($data);
 
         return $response;

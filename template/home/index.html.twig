@@ -4,7 +4,22 @@
 
 {% block content %}
     <div class="container">
+
         <h1 class="mt-5 mb-4">{{ trailers | length }} iTunes Movie trailers</h1>
+        <div class="junior row">
+            <div class="col-md-3">
+                DateTime: {{ datetime }}
+            </div>
+            <div class="col-md-3">
+                Namespace: {{ namespace }}
+            </div>
+            <div class="col-md-3">
+                Class: {{ class }}
+            </div>
+            <div class="col-md-3">
+                Method: {{ method }}
+            </div>
+        </div
         <table class="table table-bordered">
             {% for trailer in trailers %}
                 <tr>
@@ -14,3 +29,4 @@
         </table>
     </div>
 {% endblock %}
+
